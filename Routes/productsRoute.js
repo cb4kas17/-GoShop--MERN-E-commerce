@@ -9,6 +9,7 @@ const {
     addProduct,
     updateProduct,
 } = require('../controllers/productsController');
+
 // getting all the products
 router.get('/', getAllProducts);
 router.get('/:productId', getSingleProduct);
