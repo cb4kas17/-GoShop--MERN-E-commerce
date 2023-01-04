@@ -1,16 +1,17 @@
-.filterContainer{
+.filterContainer {
     width: 100%;
     display: flex;
+    margin: 0 auto;
     margin-top: 3rem;
     margin-bottom: 5rem;
     align-items: center;
     gap: 1rem;
-    max-width: 1440px;
+
+    max-width: 1300px;
     padding: 1rem;
     transform: translateX(5px);
-    
 }
-.searchContainer{
+.searchContainer {
     flex: 4;
     width: 100%;
 }
@@ -19,14 +20,15 @@
     padding: 1rem;
     font-size: 1.5rem;
     border-radius: 5px;
-    border: #1A3657 1px solid;
+    border: #1a3657 1px solid;
     outline: none;
 }
-.input:focus , .select:focus{
-    outline:#FDB231 5px solid;
+.input:focus,
+.select:focus {
+    outline: #fdb231 5px solid;
     border: 0px;
 }
-.sortContainer{
+.sortContainer {
     flex: 2;
     width: 100%;
 }
@@ -35,9 +37,9 @@
     padding: 1rem;
     font-size: 1.5rem;
     border-radius: 5px;
-    border: #1A3657 1px solid;
+    border: #1a3657 1px solid;
 }
-.categoryContainer{
+.categoryContainer {
     flex: 2;
     width: 100%;
 }
@@ -46,9 +48,9 @@
     padding: 1rem;
     font-size: 1.5rem;
     border-radius: 5px;
-    border: #1A3657 1px solid;
+    border: #1a3657 1px solid;
 }
-.btnContainer{
+.btnContainer {
     flex: 2;
     width: 100%;
 }
@@ -59,7 +61,7 @@
     border-radius: 0;
 }
 @media only screen and (max-width: 600px) {
-    .filterContainer{
+    .filterContainer {
         margin-top: 2rem;
         padding: 0rem;
     }
@@ -69,15 +71,14 @@
     }
     .filterBtn {
         font-size: 1.1rem;
-      
     }
-    .sortContainer .select, .categoryContainer .select {
+    .sortContainer .select,
+    .categoryContainer .select {
         font-size: 1rem;
     }
 }
 @media only screen and (max-width: 450px) {
-    .filterContainer{
-       flex-direction: column;
-        
+    .filterContainer {
+        flex-direction: column;
     }
 }
