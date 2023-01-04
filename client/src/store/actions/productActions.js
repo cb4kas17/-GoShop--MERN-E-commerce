@@ -38,13 +38,22 @@ export const getSingleProduct = (productId) => {
     };
 };
 export const updateProduct = (productDetails, productId) => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+        const user = getState().user.user;
         dispatch(productDetailActions.setLoading(true));
         dispatch(productDetailActions.setError(''));
         try {
-            const res = await axios.put(`${process.env.REACT_APP_API}api/products/${productId}`, {
-                productDetails,
-            });
+            const res = await axios.put(
+                `${process.env.REACT_APP_API}api/products/${productId}`,
+                {
+                    productDetails,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                }
+            );
             if (res.data.success) {
                 dispatch(productDetailActions.setProduct(res.data.data));
                 dispatch(productDetailActions.setLoading(false));
@@ -57,11 +66,19 @@ export const updateProduct = (productDetails, productId) => {
     };
 };
 export const deleteProductById = (productId) => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+        const user = getState().user.user;
         dispatch(productDetailActions.setLoading(true));
         dispatch(productDetailActions.setError(''));
         try {
-            const res = await axios.delete(`${process.env.REACT_APP_API}api/products/${productId}`);
+            const res = await axios.delete(
+                `${process.env.REACT_APP_API}api/products/${productId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                }
+            );
             if (res.data.success) {
                 dispatch(productDetailActions.setLoading(false));
                 dispatch(productDetailActions.setError(''));
@@ -74,14 +91,23 @@ export const deleteProductById = (productId) => {
 };
 
 export const createProduct = (productObject) => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+        const user = getState().user.user;
         dispatch(productsActions.setLoading(true));
         dispatch(productsActions.setError(''));
 
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API}api/products`, {
-                productDetails: productObject,
-            });
+            const res = await axios.post(
+                `${process.env.REACT_APP_API}api/products`,
+                {
+                    productDetails: productObject,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                }
+            );
             if (res.data.success) {
                 dispatch(productsActions.setLoading(false));
                 dispatch(productsActions.setError('none'));

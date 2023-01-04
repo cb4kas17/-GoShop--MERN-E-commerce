@@ -1,10 +1,15 @@
 import axios from 'axios';
 import { usersSliceAction } from '../usersSlice';
 export const getUsers = () => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+        const user = getState().user.user;
         dispatch(usersSliceAction.setStatus('pending'));
         try {
-            const res = await axios.get(`${process.env.REACT_APP_API}api/user`);
+            const res = await axios.get(`${process.env.REACT_APP_API}api/user`, {
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
             if (res.data.success) {
                 dispatch(usersSliceAction.addUsers(res.data.users));
                 dispatch(usersSliceAction.setStatus('success'));
@@ -15,15 +20,20 @@ export const getUsers = () => {
             }
         } catch (error) {
             dispatch(usersSliceAction.setStatus('failed'));
-            dispatch(usersSliceAction.setMessage('There is an error fetching users'));
+            dispatch(usersSliceAction.setMessage('Unauthorized: Login first'));
         }
     };
 };
 export const deleteUserById = (id) => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+        const user = getState().user.user;
         dispatch(usersSliceAction.setStatus('pending'));
         try {
-            const res = await axios.delete(`${process.env.REACT_APP_API}api/user/${id}`);
+            const res = await axios.delete(`${process.env.REACT_APP_API}api/user/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
             if (res.data.success) {
                 dispatch(usersSliceAction.setStatus('success'));
                 dispatch(usersSliceAction.setMessage(res.data.message));
@@ -33,7 +43,7 @@ export const deleteUserById = (id) => {
             }
         } catch (error) {
             dispatch(usersSliceAction.setStatus('failed'));
-            dispatch(usersSliceAction.setMessage(error.message));
+            dispatch(usersSliceAction.setMessage('Unauthorized: Login first'));
         }
     };
 };

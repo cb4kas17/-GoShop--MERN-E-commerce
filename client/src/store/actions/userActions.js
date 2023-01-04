@@ -28,7 +28,9 @@ export const loginUser = (user) => {
 
             if (res.data.success) {
                 dispatch(userSliceActions.setStatus('success'));
-                dispatch(userSliceActions.setUser(res.data.data));
+                // SAVING OUR USER OBJECT TO OUR USER SLICE
+                dispatch(userSliceActions.setUser(res.data.user));
+                // SETTING THE USER OBJECT TO THE LOCALSTORAGE
                 localStorage.setItem('userInfo', JSON.stringify(getState().user.user));
                 dispatch(userSliceActions.setMessage('Account successfully logged in'));
             } else if (res.data.message === 'error') {
@@ -54,12 +56,17 @@ export const logoutUser = () => {
 };
 export const getUserDetails = (userId) => {
     return async (dispatch, getState) => {
+        const user = getState().user.user;
         dispatch(userSliceActions.setStatus('pending'));
         try {
-            const res = await axios.get(`${process.env.REACT_APP_API}api/user/${userId}`);
+            const res = await axios.get(`${process.env.REACT_APP_API}api/user/${userId}`, {
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
             if (res.data.success) {
                 dispatch(userSliceActions.setStatus('success'));
-                dispatch(userSliceActions.setUser(res.data.data));
+                dispatch(userSliceActions.setUser(res.data.user));
                 localStorage.setItem('userInfo', JSON.stringify(getState().user.user));
 
                 dispatch(userSliceActions.setMessage('User details successfully fetched'));
@@ -75,14 +82,23 @@ export const getUserDetails = (userId) => {
 };
 export const updateProfile = (updatedUserDetails, userId) => {
     return async (dispatch, getState) => {
+        const user = getState().user.user;
         dispatch(userSliceActions.setStatus('pending'));
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API}api/user/${userId}`, {
-                updatedUserDetails,
-            });
+            const res = await axios.post(
+                `${process.env.REACT_APP_API}api/user/${userId}`,
+                {
+                    updatedUserDetails,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                }
+            );
             if (res.data.success) {
                 dispatch(userSliceActions.setStatus('success'));
-                dispatch(userSliceActions.setUser(res.data.data));
+                dispatch(userSliceActions.setUser(res.data.user));
                 dispatch(userSliceActions.setMessage('User details successfully updated'));
                 localStorage.setItem('userInfo', JSON.stringify(getState().user.user));
             } else {

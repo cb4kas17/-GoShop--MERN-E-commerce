@@ -1,53 +1,107 @@
-const User = require('../models/userModel');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const validator = require('validator');
 
-const registerUser = (req, res) => {
+const User = require('../models/userModel');
+const createToken = (_id, name, email) => {
+    return jwt.sign({ _id, name, email }, process.env.SECRET, { expiresIn: '1d' });
+};
+const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
 
-    User.find({ email: email }, (err, result) => {
-        if (result.length > 0) {
-            return res.status(200).json({ success: false, message: 'email exists' });
-        } else {
-            const newUser = new User({
-                name,
-                email,
-                password,
-            });
-            newUser.save((err, result) => {
-                if (err) {
-                    return res.status(400).json({ success: false, message: err.message });
-                }
+    try {
+        if (!email && !name && !password) {
+            throw Error('All fields must be filled');
+        }
+        if (!validator.isEmail(email)) {
+            throw Error('Email is not valid');
+        }
+        if (!validator.isStrongPassword(password)) {
+            throw Error('Password not strong enough');
+        }
+        const userFound = await User.findOne({ email: email });
+        if (userFound) {
+            throw Error('email exists');
+        }
+        // hashing the password
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(password, salt);
 
-                return res.status(201).json({ success: true, user: result });
-            });
-        }
-        if (err) {
-            return res.status(400).json({ success: false, message: err.message });
-        }
-    });
-};
-const loginUser = (req, res) => {
-    const { email, password } = req.body;
-    User.findOne({ email: email }, (err, result) => {
-        if (err) {
-            return res.status(400).json({ success: false, message: 'error' });
-        }
-        if (result) {
-            if (result.password === password) {
-                return res.status(201).json({
-                    success: true,
-                    data: { name: result.name, email: result.email, _id: result._id },
-                });
-            } else {
-                return res
-                    .status(200)
-                    .json({ success: false, message: 'email or password does not exists' });
-            }
-        } else {
+        // Creating a user in user model
+        const user = await User.create({ name, email, password: hash });
+
+        // creating a token after account creation
+        const token = createToken(user._id, name, email);
+        if (user) {
             return res
-                .status(200)
-                .json({ success: false, message: 'email or password does not exists' });
+                .status(201)
+                .json({
+                    success: true,
+                    user: { _id: user._id, email: user.email, name: user.name, token: token },
+                });
+        } else {
+            throw Error('registering the user failed');
         }
-    });
+    } catch (error) {
+        return res.status(400).json({ success: false, message: error.message });
+    }
+};
+const loginUser = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        // validation
+        if (!email && !password) {
+            throw Error('All fields must be filled');
+        }
+        if (!validator.isEmail(email)) {
+            throw Error('Email is not valid');
+        }
+
+        // check if the email is correct
+        const user = await User.findOne({ email });
+        if (!user) {
+            throw Error('Email does not exists');
+        } else {
+            // check if the password is correct by bcrypt.compare()
+            const match = await bcrypt.compare(password, user.password);
+            if (!match) {
+                throw Error('Password is invalid');
+            } else {
+                // creating a token
+                const token = createToken(user._id, user.name, email);
+                // sending a response
+                return res.status(200).json({
+                    success: true,
+                    user: { _id: user._id, email: user.email, name: user.name, token: token },
+                });
+            }
+        }
+    } catch (error) {
+        return res.status(400).json({ success: false, message: error.message });
+    }
+
+    // User.findOne({ email: email }, (err, result) => {
+    //     if (err) {
+    //         return res.status(400).json({ success: false, message: 'error' });
+    //     }
+    //     if (result) {
+    //         if (result.password === password) {
+    //             return res.status(201).json({
+    //                 success: true,
+    //                 data: { name: result.name, email: result.email, _id: result._id },
+    //             });
+    //         } else {
+    //             return res
+    //                 .status(200)
+    //                 .json({ success: false, message: 'email or password does not exists' });
+    //         }
+    //     } else {
+    //         return res
+    //             .status(200)
+    //             .json({ success: false, message: 'email or password does not exists' });
+    //     }
+    // });
 };
 
 const getUserDetails = (req, res) => {

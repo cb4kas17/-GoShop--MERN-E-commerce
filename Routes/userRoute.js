@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
+// import the isAuth middleware
+const isAuth = require('../middleware/isAuth');
 const {
     registerUser,
     loginUser,
@@ -12,9 +13,9 @@ const {
 
 router.post('/register', registerUser);
 router.post('/login', loginUser);
-router.get('/:userId', getUserDetails);
-router.post('/:userId', updateProfile);
-router.get('/', getUsers);
-router.delete('/:userId', deleteUser);
+router.get('/:userId', isAuth, getUserDetails);
+router.post('/:userId', isAuth, updateProfile);
+router.get('/', isAuth, getUsers);
+router.delete('/:userId', isAuth, deleteUser);
 
 module.exports = router;

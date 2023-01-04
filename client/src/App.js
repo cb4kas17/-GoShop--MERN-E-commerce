@@ -68,7 +68,10 @@ function App() {
                                 path="/profile"
                                 element={!user._id ? <Navigate to="/" /> : <ProfilePage />}
                             />
-                            <Route path="/admin/*" element={<AdminPage />}>
+                            <Route
+                                path="/admin/*"
+                                element={!user._id ? <Navigate to="/login" /> : <AdminPage />}
+                            >
                                 <Route path="users-list" element={<UsersList />} />
                                 <Route path="products-list" element={<ProductsList />} />
                                 <Route path="orders-list" element={<OrdersList />} />

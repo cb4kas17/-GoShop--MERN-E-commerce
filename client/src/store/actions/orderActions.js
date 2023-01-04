@@ -15,12 +15,20 @@ export const placeOrder = (token, totalAmount) => {
 
         try {
             dispatch(orderSliceActions.setStatus('pending'));
-            const res = await axios.post(`${process.env.REACT_APP_API}api/orders/placeOrder`, {
-                token,
-                totalAmount,
-                currentUser,
-                cartItems,
-            });
+            const res = await axios.post(
+                `${process.env.REACT_APP_API}api/orders/placeOrder`,
+                {
+                    token,
+                    totalAmount,
+                    currentUser,
+                    cartItems,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${currentUser.token}`,
+                    },
+                }
+            );
             if (res.data.success) {
                 dispatch(orderSliceActions.setStatus('success'));
                 dispatch(orderSliceActions.setMessage('Order successfully placed'));
@@ -36,12 +44,21 @@ export const placeOrder = (token, totalAmount) => {
 };
 
 export const getOrdersByUserId = (userId) => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+        const currentUser = getState().user.user;
         dispatch(orderSliceActions.setStatus('pending'));
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API}api/orders`, {
-                userId: userId,
-            });
+            const res = await axios.post(
+                `${process.env.REACT_APP_API}api/orders`,
+                {
+                    userId: userId,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${currentUser.token}`,
+                    },
+                }
+            );
 
             if (res.data.success) {
                 dispatch(orderSliceActions.setOrders(res.data.orders));
@@ -57,10 +74,15 @@ export const getOrdersByUserId = (userId) => {
     };
 };
 export const getAllOrders = () => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+        const currentUser = getState().user.user;
         dispatch(orderSliceActions.setStatus('pending'));
         try {
-            const res = await axios.get(`${process.env.REACT_APP_API}api/orders`);
+            const res = await axios.get(`${process.env.REACT_APP_API}api/orders`, {
+                headers: {
+                    Authorization: `Bearer ${currentUser.token}`,
+                },
+            });
             if (res.data.success) {
                 dispatch(orderSliceActions.setOrders(res.data.orders));
                 dispatch(orderSliceActions.setStatus('success'));

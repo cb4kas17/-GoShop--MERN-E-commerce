@@ -24,12 +24,20 @@ export const submitReview = (reviewDetails, productId) => {
         const user = getState().user.user;
         dispatch(reviewSliceActions.setStatus('pending'));
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API}api/reviews`, {
-                ...reviewDetails,
-                userId: user._id,
-                productId: productId,
-                name: user.name,
-            });
+            const res = await axios.post(
+                `${process.env.REACT_APP_API}api/reviews`,
+                {
+                    ...reviewDetails,
+                    userId: user._id,
+                    productId: productId,
+                    name: user.name,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                }
+            );
             if (res.data.success) {
                 dispatch(reviewSliceActions.setStatus('success'));
                 dispatch(reviewSliceActions.setMessage(res.data.message));
