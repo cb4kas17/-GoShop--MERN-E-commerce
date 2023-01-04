@@ -10,26 +10,26 @@ const OrdersPageContainer = (props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { status, message, orders } = props;
-
+    if (status === 'pending') {
+        return (
+            <div className={styles.absolute}>
+                {status === 'pending' && <LoadingSpinner />}
+                {status === 'failed' && (
+                    <Modal
+                        message={message}
+                        button="Okay"
+                        onClose={() => {
+                            dispatch(orderSliceActions.reset());
+                        }}
+                    />
+                )}
+            </div>
+        );
+    }
     return (
         <div className={styles.ordersContainer}>
             <h1 className={styles.ordersHeader}>MY ORDERS</h1>
             <form className={styles.ordersItemsTable}>
-                {status !== '' && (
-                    <div className={styles.absolute}>
-                        {status === 'pending' && <LoadingSpinner />}
-                        {status === 'failed' && (
-                            <Modal
-                                message={message}
-                                button="Okay"
-                                onClose={() => {
-                                    dispatch(orderSliceActions.reset());
-                                }}
-                            />
-                        )}
-                    </div>
-                )}
-
                 {orders.length === 0 && status !== 'pending' ? (
                     <h2 className={styles.noItem}>No orders found</h2>
                 ) : (

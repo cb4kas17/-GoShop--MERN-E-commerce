@@ -32,15 +32,6 @@ const CartPageContainer = (props) => {
                                 }}
                             />
                         )}
-                        {status === 'failed' && (
-                            <Modal
-                                message={message}
-                                button="Okay"
-                                onClose={() => {
-                                    dispatch(orderSliceActions.reset());
-                                }}
-                            />
-                        )}
                     </div>
                 )}
 

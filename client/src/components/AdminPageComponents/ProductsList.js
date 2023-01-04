@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts } from '../../store/actions/productActions';
-import { deleteProductById } from '../../store/actions/productActions';
+import { getAllProducts, deleteProductById } from '../../store/actions/productActions';
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import styles from './productsList.module.css';
@@ -16,7 +15,7 @@ const ProductsList = () => {
     useEffect(() => {
         dispatch(getAllProducts());
         setDeleteSuccess(false);
-    }, [dispatch, deleteSuccess]);
+    }, [dispatch, deleteSuccess, ]);
 
     let filteredArray = products?.filter(
         (item) => item.name.toLowerCase().indexOf(search.toLocaleLowerCase()) > -1
@@ -92,6 +91,7 @@ const ProductsList = () => {
                                 dispatch(deleteProductById(onDelete.id));
                                 setOnDelete(false, null);
                                 setDeleteSuccess(true);
+                                dispatch(getAllProducts());
                             }}
                             additionalBtnName="Yes"
                         />

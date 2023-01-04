@@ -98,9 +98,12 @@ export const updateProfile = (updatedUserDetails, userId) => {
             );
             if (res.data.success) {
                 dispatch(userSliceActions.setStatus('success'));
-                dispatch(userSliceActions.setUser(res.data.user));
                 dispatch(userSliceActions.setMessage('User details successfully updated'));
-                localStorage.setItem('userInfo', JSON.stringify(getState().user.user));
+                dispatch(userSliceActions.setUser({ ...res.data.user, token: user.token }));
+                localStorage.setItem(
+                    'userInfo',
+                    JSON.stringify({ ...res.data.user, token: user.token })
+                );
             } else {
                 dispatch(userSliceActions.setStatus('failed'));
                 dispatch(userSliceActions.setMessage('Cannot update user data'));

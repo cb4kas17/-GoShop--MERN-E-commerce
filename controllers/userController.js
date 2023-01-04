@@ -58,6 +58,7 @@ const loginUser = async (req, res) => {
 
         // check if the email is correct
         const user = await User.findOne({ email });
+        console.log(user);
         if (!user) {
             throw Error('Email does not exists');
         } else {
@@ -137,7 +138,7 @@ const updateProfile = (req, res) => {
                 } else {
                     return res.status(201).json({
                         success: true,
-                        data: { name: docs.name, email: docs.email, _id: docs._id },
+                        user: { name: docs.name, email: docs.email, _id: docs._id },
                     });
                 }
             });

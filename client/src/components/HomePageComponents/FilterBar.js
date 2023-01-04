@@ -6,9 +6,11 @@ import Button from '../UI/Button';
 const FilterBar = () => {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.products.products);
+    // put all the categories of products to a new array
     const category = products.map((item) => {
         return item.category;
     });
+    // remove duplicate category in the array
     let categories = category.filter((c, index) => {
         return category.indexOf(c) === index;
     });

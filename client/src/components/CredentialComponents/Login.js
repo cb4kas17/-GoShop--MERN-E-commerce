@@ -11,7 +11,7 @@ import LoadingSpinner from '../UI/LoadingSpinner';
 import { userSliceActions } from '../../store/userSlice';
 import { useNavigate } from 'react-router-dom';
 const Login = () => {
-    let strongPassword = new RegExp('(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
+    let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
     let validEmail = new RegExp(
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     );

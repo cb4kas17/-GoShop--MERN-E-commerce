@@ -4,7 +4,7 @@ import useInput from '../../hooks/useInput';
 import Card from '../UI/Card';
 import Button from '../UI/Button';
 const ResetPassword = () => {
-    let strongPassword = new RegExp('(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
+    let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
     const {
         value: passwordValue,
         isValid: passwordIsValid,

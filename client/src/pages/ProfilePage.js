@@ -7,9 +7,6 @@ const ProfilePage = () => {
     const userInfo = useSelector((state) => state.user.user);
     const user = JSON.parse(localStorage.getItem('userInfo'));
 
-    useEffect(() => {
-        dispatch(getUserDetails(user._id));
-    }, [dispatch, user._id]);
     return (
         <div className="max-width">
             <ProfilePageContainer userInfo={userInfo} />
