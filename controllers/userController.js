@@ -33,12 +33,10 @@ const registerUser = async (req, res) => {
         // creating a token after account creation
         const token = createToken(user._id, name, email);
         if (user) {
-            return res
-                .status(201)
-                .json({
-                    success: true,
-                    user: { _id: user._id, email: user.email, name: user.name, token: token },
-                });
+            return res.status(201).json({
+                success: true,
+                user: { _id: user._id, email: user.email, name: user.name, token: token },
+            });
         } else {
             throw Error('registering the user failed');
         }
@@ -113,7 +111,7 @@ const getUserDetails = (req, res) => {
         if (result) {
             return res.status(201).json({
                 success: true,
-                data: { name: result.name, email: result.email, _id: result._id },
+                user: { name: result.name, email: result.email, _id: result._id },
             });
         } else {
             return res.status(400).json({ success: false, message: 'Can not fetch user datails' });
