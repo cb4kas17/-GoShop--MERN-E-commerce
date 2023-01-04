@@ -1,0 +1,220 @@
+.orderInfoContainer {
+    display: flex;
+    width: 100%;
+    gap: 3rem;
+    justify-content: space-between;
+    margin-top: 5rem;
+}
+.leftContentContainer {
+    border-radius: 5px;
+    flex: 1;
+    outline: 5px solid #1a3657;
+    height: 100%;
+}
+.leftContentContainer h2 {
+    font-size: 2.5rem;
+    border-bottom: 5px solid #1a3657;
+    padding: 2rem 1rem;
+    text-align: center;
+    background-color: #fdb231;
+}
+.orderItemsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.orderItemContainer {
+    padding: 2rem;
+}
+.orderInfoContainer h3 {
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+.rightContentContainer {
+    flex: 1;
+    flex-shrink: -1;
+}
+.orderDetailsContainer {
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    outline: 5px solid #1a3657;
+}
+.orderDetailsContainer h2 {
+    font-size: 2.5rem;
+    border-bottom: 5px solid #1a3657;
+    padding: 2rem 1rem;
+    text-align: center;
+    background-color: #fdb231;
+}
+.orderDetailsContentContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+}
+.orderDetailsContentContainer h3 {
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+.shippingDetailsContainer {
+    border-radius: 5px;
+    outline: 5px solid #1a3657;
+}
+.shippingDetailsContainer h2 {
+    font-size: 2.5rem;
+    border-bottom: 5px solid #1a3657;
+    padding: 2rem 1rem;
+    text-align: center;
+    background-color: #fdb231;
+}
+.shippingDetailsContentContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+}
+.shippingDetailsContentContainer h3 {
+    font-weight: 400;
+    font-size: 2rem;
+}
+/* return policy */
+.returnPolicyContainer {
+    margin: 5rem 0;
+
+    outline: 5px solid #1a3657;
+    border-radius: 5px;
+    padding-bottom: 5rem;
+}
+.returnPolicyContainer h2 {
+    padding: 2rem;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: 5px solid #1a3657;
+    background-color: #fdb231;
+}
+.returnPolicyContainer p {
+    padding: 0 2rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    line-height: 2;
+}
+.returnPolicyContainer p::before {
+    content: '- ';
+}
+
+.returnPolicyContainer h3 {
+    margin-top: 3rem;
+    font-size: 2rem;
+    padding: 1rem 2rem;
+}
+@media only screen and (max-width: 1000px) {
+    .orderInfoContainer {
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    .leftContentContainer h2 {
+        font-size: 2rem;
+        padding: 1rem;
+    }
+    .orderItemContainer {
+        padding: 1rem;
+    }
+    .orderInfoContainer h3 {
+        font-size: 1.5rem;
+    }
+    .orderDetailsContainer h2 {
+        font-size: 2rem;
+        padding: 1rem;
+    }
+    .orderDetailsContentContainer h3 {
+        font-size: 1.5rem;
+    }
+    .orderDetailsContentContainer {
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+    .shippingDetailsContainer h2 {
+        font-size: 2rem;
+        padding: 1rem;
+    }
+    .shippingDetailsContentContainer {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+    .shippingDetailsContentContainer h3 {
+        font-size: 1.5rem;
+    }
+    .returnPolicyContainer {
+        margin: 3rem 0;
+        padding-bottom: 3rem;
+    }
+    .returnPolicyContainer h2 {
+        padding: 1rem;
+        font-size: 2rem;
+    }
+    .returnPolicyContainer p {
+        padding: 0 1.5rem;
+        font-size: 1.5rem;
+    }
+
+    .returnPolicyContainer h3 {
+        margin-top: 2rem;
+        font-size: 1.5rem;
+        padding: 1rem 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .orderInfoContainer {
+        flex-direction: column;
+    }
+    .leftContentContainer {
+        margin: 0.5rem;
+    }
+    .rightContentContainer {
+        margin: 0.5rem;
+    }
+    .leftContentContainer h2 {
+        font-size: 1.5rem;
+    }
+
+    .orderInfoContainer h3 {
+        font-size: 1.2rem;
+    }
+    .orderDetailsContainer h2 {
+        font-size: 1.2rem;
+        padding: 1rem;
+    }
+    .orderDetailsContentContainer h3 {
+        font-size: 1.2rem;
+    }
+
+    .shippingDetailsContainer h2 {
+        font-size: 1.2rem;
+    }
+
+    .shippingDetailsContentContainer h3 {
+        font-size: 1.2rem;
+    }
+    .returnPolicyContainer {
+        margin: 2rem 0.5rem;
+        padding-bottom: 3rem;
+    }
+    .returnPolicyContainer h2 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    .returnPolicyContainer p {
+        padding: 0 1rem;
+        font-size: 1.2rem;
+    }
+
+    .returnPolicyContainer h3 {
+        margin-top: 2rem;
+        font-size: 1.2rem;
+        padding: 1rem 1.5rem;
+    }
+}

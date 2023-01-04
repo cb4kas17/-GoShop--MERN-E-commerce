@@ -1,0 +1,37 @@
+.reviewHeader{
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    color: #295a91;
+    margin-bottom: 2rem;
+}
+
+.singleReviewContainer{
+    padding:1.5rem;
+    border: 3px solid #1936576a;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.reviewContent{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+}
+
+@media only screen and (max-width: 1050px) {
+    .reviewHeader{
+        font-size: 2.5rem;
+        
+    }
+    .reviewContent{
+        font-size: 2rem;
+    }
+    .singleReviewContainer{
+        width: 100%;
+    }
+}

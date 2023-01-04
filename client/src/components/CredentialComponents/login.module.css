@@ -1,0 +1,125 @@
+.loginPageContainer {
+    height: calc(100vh - 72px);
+    width: 100%;
+    text-align: center;
+    color: #193658;
+    overflow: hidden;
+    background: #193658; /* fallback for old browsers */ /* fallback for old browsers */
+    background: linear-gradient(rgba(2, 2, 2, 0.1), rgba(0, 0, 0, 0.1)),
+        url('../../assets/cart.avif'); /* Chrome 10-25, Safari 5.1-6 */
+    background-size: cover;
+    background-position: center;
+    background-clip: border-box;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginFieldContainer {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 4rem 7rem;
+
+    margin: 1rem;
+}
+.loginFieldContainer h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #000000;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+.inputFields {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.inputFields input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.7rem;
+    border-radius: 10px;
+    border: #1a3657 5px solid;
+    outline: none;
+    transition: all 0.2s ease-out;
+}
+.inputItem:focus {
+    transform: scale(1.05);
+}
+
+.invalid {
+    border: #f03c1c 5px solid !important ;
+}
+.invalid:focus {
+    transform: scale(1.05);
+}
+
+.forgotPassword {
+    font-size: 1.5rem;
+    text-decoration: underline;
+    align-self: flex-end;
+    padding-right: 1rem;
+}
+.linkContainer {
+    align-self: flex-end;
+}
+.loginbtn {
+    font-size: 2rem !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .loginPageContainer {
+        height: calc(100vh - 67px);
+    }
+    .loginFieldContainer {
+        padding: 3rem 5rem;
+        margin: 2rem;
+    }
+    .loginFieldContainer h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    .inputFields {
+        margin-bottom: 1rem;
+    }
+    .inputFields input {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.2rem;
+    }
+    .forgotPassword {
+        font-size: 1.3rem;
+        text-decoration: underline;
+        align-self: flex-end;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .loginFieldContainer {
+        padding: 2rem 3rem;
+        margin: 1rem;
+    }
+    .loginFieldContainer h1 {
+        font-size: 1.7rem;
+    }
+    .inputFields input {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    .forgotPassword {
+        font-size: 1.2rem;
+        text-decoration: underline;
+        align-self: flex-end;
+    }
+    .loginbtn {
+        font-size: 1.5rem !important;
+    }
+}
+@media only screen and (max-width: 350px) {
+    .forgotPassword {
+        font-size: 1rem;
+        text-decoration: underline;
+        align-self: flex-end;
+    }
+}

@@ -1,0 +1,44 @@
+.adminPageContainer {
+    margin-bottom: 5rem;
+}
+
+.adminNavBar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    background: #193658;
+    color: #fff;
+    font-size: 1.5rem;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.active {
+    background: #fdb231 !important;
+    color: #000 !important;
+    transition: all 0.5s ease;
+    border-radius: 5px;
+}
+.default {
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    transition: all 0.5s ease;
+}
+.default:hover {
+    background: #1462bb;
+    color: #fff;
+}
+@media only screen and (max-width: 768px) {
+    .adminNavBar {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .adminNavBar {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,88 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+  
+  .modal {
+    position: fixed;
+    top: 40%;
+    left: calc(50% - 35rem);
+    transform: translate(-50%,-50%);
+    background-color: #286ab6;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    z-index: 30;
+    animation: slide-down 300ms ease-out forwards;
+    display: flex;
+    place-content: center;
+    padding: 5rem 4rem;
+    text-align: center;
+    margin: 1rem;
+   
+  }
+  .header{
+    font-size: 4rem;
+    margin-bottom: 3rem;
+    color: #fff;
+  }
+  .btnContainer{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn{
+    font-size: 2rem;
+  }
+
+  
+  @media (min-width: 768px) {
+    .modal {
+      width: 70rem;
+      left: calc(50% - 35rem);
+    }
+  }
+  
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-3rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @media only screen and (max-width: 800px) { 
+    .modal{
+      padding: 4rem 3rem;
+      width: 50rem;
+      left: calc(50% - 25rem);
+    }
+    .header {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+    }
+    .btn{
+      font-size: 1.5rem;
+    }
+  }
+  @media only screen and (max-width: 550px) { 
+    .modal{
+      padding: 4rem 3rem;
+      width: 30rem;
+      left: calc(50% - 16rem);
+    }
+    .header {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .btn{
+      font-size: 1.5rem;
+    }
+  }

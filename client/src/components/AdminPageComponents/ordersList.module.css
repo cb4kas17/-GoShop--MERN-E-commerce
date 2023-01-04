@@ -1,0 +1,214 @@
+.usersListContainer {
+    height: 100%;
+    padding: 3rem 2rem;
+    width: 100%;
+}
+.header {
+    font-size: 3.5rem;
+    font-family: 'Poppins' sans-serif;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.filterContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+}
+
+.filterContainer input {
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: #1a3657 1px solid;
+    outline: none;
+    width: 30rem;
+}
+.filterContainer input:focus {
+    outline: #fdb231 5px solid;
+    border: 0px;
+}
+.usersListContentContainer {
+    outline: 5px solid #1a3657;
+    border-radius: 10px;
+    box-shadow: 0 20px 5px rgba(0, 0, 0, 0.26);
+    width: 100%;
+    max-width: 200rem;
+}
+.usersTableHeaderContainer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+.usersTableHeaderContainer h2 {
+    flex: 3;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    font-family: 'Roboto' sans-serif;
+    font-weight: 900;
+    border-bottom: 0.5px solid #1a3657;
+    border-right: 0.5px solid #1a3657;
+    background-color: #fdb231;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.usersTableHeaderContainer h2:nth-child(4),
+.usersTableHeaderContainer h2:nth-child(5) {
+    flex: 1;
+    text-align: center;
+}
+.noItem {
+    font-size: 3rem;
+    color: rgb(196, 43, 43);
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+.absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.userContainer {
+    display: flex;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+.userContainer:hover {
+    color: #115eb6;
+    cursor: pointer;
+}
+.userContainer h3 {
+    flex: 3;
+    padding: 1.5rem 1.5rem;
+    font-size: 1.5rem;
+    font-family: 'Roboto' sans-serif;
+    font-weight: 500;
+    border-bottom: 0.5px solid #1a3657;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-right: 0.5px solid #1a3657;
+}
+
+.userContainer h3:nth-child(4),
+.userContainer h3:nth-child(5) {
+    flex: 1;
+    text-align: center;
+}
+@media only screen and (max-width: 1010px) {
+    .header {
+        font-size: 3rem;
+    }
+    .filterContainer input {
+        font-size: 1rem;
+    }
+    .usersTableHeaderContainer h2 {
+        font-size: 1.2rem;
+        padding: 1rem;
+    }
+    .userContainer h3 {
+        font-size: 1.2rem;
+        padding: 1rem;
+    }
+    .usersTableHeaderContainer h2:nth-child(3),
+    .usersTableHeaderContainer h2:nth-child(6) {
+        display: none;
+    }
+    .userContainer h3:nth-child(3),
+    .userContainer h3:nth-child(6) {
+        display: none;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .usersListContainer {
+        padding: 3rem 0.5rem;
+    }
+    .header {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .filterContainer input {
+        font-size: 1rem;
+        width: 20rem;
+    }
+    .usersListContentContainer {
+        border-radius: 5px;
+        box-shadow: 0 10px 5px rgba(0, 0, 0, 0.26);
+    }
+    .usersTableHeaderContainer h2 {
+        padding: 1rem;
+        font-size: 1.2rem;
+    }
+    .usersTableHeaderContainer h2:nth-child(3),
+    .usersTableHeaderContainer h2:nth-child(6) {
+        display: none;
+    }
+    .userContainer h3:nth-child(3),
+    .userContainer h3:nth-child(6) {
+        display: none;
+    }
+    .usersTableHeaderContainer h2:nth-child(1) {
+        flex: 2;
+    }
+    .userContainer h3:nth-child(1) {
+        flex: 2;
+    }
+    .usersTableHeaderContainer h2:nth-child(2) {
+        flex: 2;
+    }
+    .userContainer h3:nth-child(2) {
+        flex: 2;
+    }
+
+    .noItem {
+        font-size: 2rem;
+    }
+    .userContainer h3 {
+        padding: 1rem 1rem;
+        font-size: 1.2rem;
+    }
+    .userContainer i {
+        font-size: 1.2rem;
+        color: #1a3657;
+        text-align: center;
+        transition: all 0.5s ease;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .usersListContainer {
+        padding: 2rem 0.5rem;
+    }
+    .header {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    .filterContainer input {
+        width: 13rem;
+    }
+
+    .usersTableHeaderContainer h2 {
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+    .noItem {
+        font-size: 2rem;
+    }
+    .userContainer h3 {
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+    .userContainer i {
+        font-size: 1rem;
+        color: #1a3657;
+        text-align: center;
+        transition: all 0.5s ease;
+    }
+}

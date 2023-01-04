@@ -1,0 +1,100 @@
+.cartItemContainer {
+    display: flex;
+    width: 100%;
+}
+.cartItemContainer h3 {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    font-size: 3em;
+    font-family: 'Roboto' sans-serif;
+    font-weight: 500;
+    border-bottom: 0.5px solid #1a3657;
+    border-right: 0.5px solid #1a3657;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.cartItemContainer h3:first-child {
+    flex: 5;
+    text-align: left;
+}
+.controlsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.quantityInput {
+    padding: 0.3rem 0;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #193658;
+    border-radius: 4px;
+    width: 3rem;
+    font-size: 1.7rem;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    display: none;
+}
+
+.cartItemContainer i {
+    font-size: 3rem;
+    color: #1a3657;
+}
+
+@media only screen and (max-width: 1000px) {
+    .cartItemContainer h3 {
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        justify-content: center;
+    }
+    .cartItemContainer h3:first-child {
+        justify-content: start;
+    }
+    .controlsContainer {
+        flex-direction: column;
+    }
+    .quantityInput {
+        padding: 0rem 0;
+        text-align: center;
+        box-sizing: border-box;
+        border: 1px solid #193658;
+        border-radius: 4px;
+        width: 3rem;
+        font-size: 1.7rem;
+    }
+    .cartItemContainer i {
+        font-size: 2rem;
+        color: #1a3657;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .cartItemContainer h3 {
+        font-size: 1rem;
+        padding: 0.5rem;
+        justify-content: center;
+    }
+
+    .quantityInput {
+        text-align: center;
+        box-sizing: border-box;
+        border: 1px solid #193658;
+        border-radius: 4px;
+        width: 2rem;
+        font-size: 1.2rem;
+    }
+    .cartItemContainer i {
+        font-size: 1.5rem;
+        color: #1a3657;
+        display: none;
+    }
+}

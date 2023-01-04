@@ -1,0 +1,170 @@
+.productDetailsContainer {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    justify-content: center;
+    margin: 3rem 0;
+    gap: 2rem;
+}
+.firstDivContainer {
+    padding: 3rem 2rem;
+    align-self: flex-start;
+}
+.productName {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+.imageContainer {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.productImage {
+    width: 100%;
+    object-fit: fill;
+    aspect-ratio: 1/1;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.productDescription {
+    font-size: 2rem;
+    line-height: 3rem;
+    text-align: justify;
+}
+
+.secondDivContainer {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 0;
+}
+.productPrice {
+    font-size: 5rem;
+    font-family: 'Poppins', sans-serif;
+    padding-bottom: 2rem;
+    border-bottom: 1.5px dotted #5353533f;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.rating {
+    font-size: 1rem;
+}
+.quantityContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+    font-size: 2.3rem;
+    margin-top: 4rem;
+}
+.outOfStock {
+    font-size: 2rem;
+    color: rgb(210, 35, 35);
+}
+.quantityInput {
+    font-size: 2rem;
+    padding: 0.5rem 0;
+    text-align: center;
+    box-sizing: border-box;
+    border: 4px solid #193658;
+    border-radius: 4px;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+.stock {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+.addToCartContainer {
+    padding-bottom: 4rem;
+    border-bottom: 1.5px dotted #5353533f;
+    width: 100%;
+}
+.reviewSectionContainer {
+    width: 100%;
+    padding-top: 3rem;
+}
+.noReview {
+    font-size: 2rem;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1050px) {
+    .productName {
+        font-size: 2rem;
+    }
+    .productDescription,
+    .secondDivContainer {
+        font-size: 1.5rem;
+    }
+    .productPrice {
+        font-size: 4rem;
+    }
+    .rating {
+        font-size: 0.8rem;
+    }
+    .quantityContainer {
+        margin-top: 2rem;
+    }
+    .quantityContainer,
+    .outOfStock,
+    .quantityInput {
+        font-size: 1.7rem;
+    }
+    .stock {
+        font-size: 1.5rem;
+    }
+    .addToCartContainer {
+        padding-bottom: 2rem;
+    }
+    .noReview {
+        font-size: 1.5rem;
+    }
+    .addToCartBtn {
+        font-size: 2rem !important;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    .productDetailsContainer {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-items: center;
+    }
+    .secondDivContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+    }
+    .productPrice {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .quantityContainer {
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+    .addToCartContainer {
+        display: flex;
+        justify-content: center;
+    }
+    .reviewSectionContainer {
+        width: 100%;
+        padding-top: 3rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+}
