@@ -74,6 +74,17 @@ const NavBar = () => {
                                 )}
                                 {dropdown && (
                                     <ul className={styles.dropdownContent}>
+                                        {user.role === 1 && (
+                                            <li
+                                                className={styles.dropdownItem}
+                                                onClick={() => {
+                                                    setDropDown(false);
+                                                    navigate('/admin');
+                                                }}
+                                            >
+                                                Admin Portal
+                                            </li>
+                                        )}
                                         <li
                                             className={styles.dropdownItem}
                                             onClick={() => {
