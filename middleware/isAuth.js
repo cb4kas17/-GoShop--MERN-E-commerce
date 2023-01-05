@@ -14,7 +14,8 @@ const isAuth = async (req, res, next) => {
     const token = authorization.split(' ')[1];
     try {
         // We will use jwt to verify the token and get a data from it like _id
-        const { _id } = await jwt.verify(token, process.env.SECRET);
+        const { _id, role } = await jwt.verify(token, process.env.SECRET);
+        console.log(_id);
         // we will find if the user exist in our database
         const user = await User.findOne({ _id }).select('_id');
         // throw an error if the user does not exist
@@ -24,10 +25,11 @@ const isAuth = async (req, res, next) => {
         // assign a req.user for the next middleware or we can manipulate it in controller
         // we could use it as a data for verification later
         req.user = user;
+        req.role = role;
         // this is important because we will call next() in order for the API to continue
         next();
     } catch (error) {
-        return res.status(401).json({ success: false, message: 'Unauthorized request' });
+        return res.status(403).json({ success: false, message: 'Unauthorized request' });
     }
 };
 module.exports = isAuth;

@@ -20,7 +20,8 @@ export const getUsers = () => {
             }
         } catch (error) {
             dispatch(usersSliceAction.setStatus('failed'));
-            dispatch(usersSliceAction.setMessage('Unauthorized: Login first'));
+            dispatch(usersSliceAction.setMessage(error.response.data.message));
+            console.log(error);
         }
     };
 };
@@ -43,7 +44,7 @@ export const deleteUserById = (id) => {
             }
         } catch (error) {
             dispatch(usersSliceAction.setStatus('failed'));
-            dispatch(usersSliceAction.setMessage('Unauthorized: Login first'));
+            dispatch(usersSliceAction.setMessage(error.response.data.message));
         }
     };
 };

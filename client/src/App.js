@@ -30,6 +30,7 @@ const EditProduct = React.lazy(() => import('./components/AdminPageComponents/Ed
 function App() {
     const user = useSelector((state) => state.user.user);
     const { isLoading, error } = useSelector((state) => state.productDetail);
+
     return (
         <BrowserRouter>
             <Suspense fallback={<LoadingSpinner />}>
@@ -37,7 +38,16 @@ function App() {
                 <div className="App">
                     <main>
                         <Routes>
-                            <Route path="/" element={<Navigate to="/products" />} />
+                            <Route
+                                path="/*"
+                                element={
+                                    user.role === 1 ? (
+                                        <Navigate to="/admin" />
+                                    ) : (
+                                        <Navigate to="/products" />
+                                    )
+                                }
+                            />
                             <Route
                                 path="/login/*"
                                 element={user._id ? <Navigate to="/" /> : <LoginPage />}
@@ -70,7 +80,7 @@ function App() {
                             />
                             <Route
                                 path="/admin/*"
-                                element={!user._id ? <Navigate to="/login" /> : <AdminPage />}
+                                element={user.role !== 1 ? <Navigate to="/login" /> : <AdminPage />}
                             >
                                 <Route path="users-list" element={<UsersList />} />
                                 <Route path="products-list" element={<ProductsList />} />
@@ -83,6 +93,7 @@ function App() {
                             </Route>
                             <Route path="/cart" element={<CartPage />} />
                             <Route path="*" element={<ErrorPage />} />
+                            <Route />
                         </Routes>
                     </main>
                 </div>

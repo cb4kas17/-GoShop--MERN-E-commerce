@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 const validator = require('validator');
 
 const User = require('../models/userModel');
-const createToken = (_id, name, email) => {
-    return jwt.sign({ _id, name, email }, process.env.SECRET, { expiresIn: '1d' });
+const createToken = (_id, name, email,role) => {
+    return jwt.sign({ _id, name, email ,role}, process.env.SECRET, { expiresIn: '1d' });
 };
 const registerUser = async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     try {
         if (!email && !name && !password) {
@@ -28,14 +28,20 @@ const registerUser = async (req, res) => {
         const hash = await bcrypt.hash(password, salt);
 
         // Creating a user in user model
-        const user = await User.create({ name, email, password: hash });
+        const user = await User.create({ name, email, password: hash, role });
 
         // creating a token after account creation
-        const token = createToken(user._id, name, email);
+        const token = createToken(user._id, name, email, role);
         if (user) {
             return res.status(201).json({
                 success: true,
-                user: { _id: user._id, email: user.email, name: user.name, token: token },
+                user: {
+                    _id: user._id,
+                    email: user.email,
+                    name: user.name,
+                    role: user.role,
+                    token: token,
+                },
             });
         } else {
             throw Error('registering the user failed');
@@ -68,39 +74,23 @@ const loginUser = async (req, res) => {
                 throw Error('Password is invalid');
             } else {
                 // creating a token
-                const token = createToken(user._id, user.name, email);
+                const token = createToken(user._id, user.name, email, user.role);
                 // sending a response
                 return res.status(200).json({
                     success: true,
-                    user: { _id: user._id, email: user.email, name: user.name, token: token },
+                    user: {
+                        _id: user._id,
+                        email: user.email,
+                        name: user.name,
+                        role: user.role,
+                        token: token,
+                    },
                 });
             }
         }
     } catch (error) {
         return res.status(400).json({ success: false, message: error.message });
     }
-
-    // User.findOne({ email: email }, (err, result) => {
-    //     if (err) {
-    //         return res.status(400).json({ success: false, message: 'error' });
-    //     }
-    //     if (result) {
-    //         if (result.password === password) {
-    //             return res.status(201).json({
-    //                 success: true,
-    //                 data: { name: result.name, email: result.email, _id: result._id },
-    //             });
-    //         } else {
-    //             return res
-    //                 .status(200)
-    //                 .json({ success: false, message: 'email or password does not exists' });
-    //         }
-    //     } else {
-    //         return res
-    //             .status(200)
-    //             .json({ success: false, message: 'email or password does not exists' });
-    //     }
-    // });
 };
 
 const getUserDetails = (req, res) => {

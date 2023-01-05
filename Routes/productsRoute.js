@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const isAuth = require('../middleware/isAuth');
+const isAdmin = require('../middleware/isAdmin');
 // Import controllers
 const {
     getAllProducts,
@@ -13,8 +14,8 @@ const {
 // getting all the products
 router.get('/', getAllProducts);
 router.get('/:productId', getSingleProduct);
-router.delete('/:productId', isAuth, deleteProductById);
-router.post('/', isAuth, addProduct);
-router.put('/:productId', isAuth, updateProduct);
+router.delete('/:productId', isAuth, isAdmin, deleteProductById);
+router.post('/', isAuth, isAdmin, addProduct);
+router.put('/:productId', isAuth, isAdmin, updateProduct);
 
 module.exports = router;

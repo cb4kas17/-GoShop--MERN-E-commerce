@@ -28,15 +28,13 @@
 }
 .productItemContainer:hover {
     box-shadow: 0 15px 10px rgba(0, 0, 0, 0.37);
-    outline: 5px solid #1a3657;
+    border: 5px solid #1a3657;
     transform: translateY(-1rem);
-    border: none;
+    /* border: none; */
 }
 .productItemContainer:active {
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.37);
-
     transform: translateY(0rem);
-    border: none;
 }
 @media only screen and (max-width: 768px) {
     .productItemContainer {

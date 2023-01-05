@@ -49,12 +49,7 @@ const Login = () => {
             passwordReset();
         }
     };
-    useEffect(() => {
-        if (status === 'success') {
-            dispatch(userSliceActions.setStatus(''));
-            return navigate('/');
-        }
-    }, [navigate, status, dispatch]);
+
     return (
         <form className={styles.loginPageContainer} onSubmit={onLoginHandler}>
             {status === 'failed' && (

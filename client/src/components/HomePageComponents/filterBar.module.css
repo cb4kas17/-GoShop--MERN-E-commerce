@@ -6,7 +6,6 @@
     margin-bottom: 5rem;
     align-items: center;
     gap: 1rem;
-
     max-width: 1300px;
     padding: 1rem;
     transform: translateX(5px);
@@ -32,7 +31,7 @@
     flex: 2;
     width: 100%;
 }
-.sortContainer .select {
+.sortContainer select {
     width: 100%;
     padding: 1rem;
     font-size: 1.5rem;
@@ -43,7 +42,7 @@
     flex: 2;
     width: 100%;
 }
-.categoryContainer .select {
+.categoryContainer select {
     width: 100%;
     padding: 1rem;
     font-size: 1.5rem;
@@ -72,9 +71,10 @@
     .filterBtn {
         font-size: 1.1rem;
     }
-    .sortContainer .select,
-    .categoryContainer .select {
+    .sortContainer select,
+    .categoryContainer select {
         font-size: 1rem;
+        padding: 1rem;
     }
 }
 @media only screen and (max-width: 450px) {
