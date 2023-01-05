@@ -6,10 +6,10 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState: cartFromLocalStorage || { cart: [], totalItems: 0, totalAmount: 0 },
     reducers: {
-        replaceCart(state, action) {
-            state.cart = action.payload.cart;
-            state.totalItems = action.payload.totalItems;
-            state.totalAmount = action.payload.totalAmount;
+        clearCart(state) {
+            state.cart = [];
+            state.totalItems = 0;
+            state.totalAmount = 0;
         },
         addItemToCart(state, action) {
             const itemFound = state.cart.find((item) => item._id === action.payload._id);

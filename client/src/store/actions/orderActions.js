@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { orderSliceActions } from '../orderSlice';
+import { clearCart } from './cartActions';
 export const placeOrder = (token, totalAmount) => {
     return async (dispatch, getState) => {
         const currentUser = getState().user.user;
@@ -32,6 +33,7 @@ export const placeOrder = (token, totalAmount) => {
             if (res.data.success) {
                 dispatch(orderSliceActions.setStatus('success'));
                 dispatch(orderSliceActions.setMessage('Order successfully placed'));
+                dispatch(clearCart());
             } else {
                 dispatch(orderSliceActions.setStatus('failed'));
                 dispatch(orderSliceActions.setMessage('Order did not proceed'));

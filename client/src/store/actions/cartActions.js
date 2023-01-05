@@ -19,3 +19,9 @@ export const removeItemToCart = (productId) => {
         localStorage.setItem('cartInfo', JSON.stringify(getState().cart));
     };
 };
+export const clearCart = () => {
+    return async (dispatch, getState) => {
+        dispatch(cartSliceActions.clearCart());
+        localStorage.setItem('cartInfo', JSON.stringify(getState().cart));
+    };
+};

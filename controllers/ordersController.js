@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const Order = require('../models/orderModel');
+const Product = require('../models/productModel');
 const ordersController = async (req, res) => {
     const { token, cartItems, currentUser, totalAmount } = req.body;
     const customer = await stripe.customers.create({
@@ -41,6 +42,11 @@ const ordersController = async (req, res) => {
                         message: 'saving order to backend went wrong',
                     });
                 } else {
+                    cartItems.forEach(async (item) => {
+                        const product = await Product.findOne({ _id: item._id });
+                        product.countInStock -= item.quantity;
+                        await product.save();
+                    });
                     res.status(201).json({ success: true, message: 'order placed successfully' });
                 }
             });
