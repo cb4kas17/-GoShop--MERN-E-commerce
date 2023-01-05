@@ -8,7 +8,7 @@
 .leftContentContainer {
     border-radius: 5px;
     flex: 1;
-    outline: 5px solid #1a3657;
+    border: 5px solid #1a3657;
     height: 100%;
 }
 .leftContentContainer h2 {
@@ -38,7 +38,7 @@
 .orderDetailsContainer {
     border-radius: 5px;
     margin-bottom: 2rem;
-    outline: 5px solid #1a3657;
+    border: 5px solid #1a3657;
 }
 .orderDetailsContainer h2 {
     font-size: 2.5rem;
@@ -60,7 +60,7 @@
 
 .shippingDetailsContainer {
     border-radius: 5px;
-    outline: 5px solid #1a3657;
+    border: 5px solid #1a3657;
 }
 .shippingDetailsContainer h2 {
     font-size: 2.5rem;
@@ -83,7 +83,7 @@
 .returnPolicyContainer {
     margin: 5rem 0;
 
-    outline: 5px solid #1a3657;
+    border: 5px solid #1a3657;
     border-radius: 5px;
     padding-bottom: 5rem;
 }

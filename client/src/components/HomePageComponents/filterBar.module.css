@@ -1,7 +1,6 @@
 .filterContainer {
     width: 100%;
     display: flex;
-    margin: 0 auto;
     margin-top: 3rem;
     margin-bottom: 5rem;
     align-items: center;
@@ -80,5 +79,9 @@
 @media only screen and (max-width: 450px) {
     .filterContainer {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        margin-bottom: 2rem;
     }
 }

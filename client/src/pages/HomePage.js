@@ -16,7 +16,7 @@ const HomePage = () => {
         return <ErrorMessage errorMessage={error} />;
     }
     return (
-        <div className="max-width">
+        <div className="max-width-filter flex-column-center">
             <FilterBar />
             {isLoading ? <LoadingSpinner /> : <ShopItems products={products} />}
         </div>
