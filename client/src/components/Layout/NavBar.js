@@ -94,15 +94,18 @@ const NavBar = () => {
                                         >
                                             Profile
                                         </li>
-                                        <li
-                                            className={styles.dropdownItem}
-                                            onClick={() => {
-                                                setDropDown(false);
-                                                navigate('/orders');
-                                            }}
-                                        >
-                                            Orders
-                                        </li>
+                                        {user.role === 0 && (
+                                            <li
+                                                className={styles.dropdownItem}
+                                                onClick={() => {
+                                                    setDropDown(false);
+                                                    navigate('/orders');
+                                                }}
+                                            >
+                                                Orders
+                                            </li>
+                                        )}
+
                                         <li
                                             className={styles.dropdownItem}
                                             onClick={() => {
