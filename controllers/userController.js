@@ -130,7 +130,12 @@ const updateProfile = (req, res) => {
                 } else {
                     return res.status(201).json({
                         success: true,
-                        user: { name: docs.name, email: docs.email, _id: docs._id },
+                        user: {
+                            name: docs.name,
+                            email: docs.email,
+                            _id: docs._id,
+                            role: docs.role,
+                        },
                     });
                 }
             });
