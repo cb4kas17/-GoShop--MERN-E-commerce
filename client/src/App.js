@@ -61,7 +61,7 @@ function App() {
                                 element={user._id ? <Navigate to="/" /> : <ForgotPasswordPage />}
                             />
                             <Route
-                                path="/resetPassword/:token"
+                                path="/password-reset/:id/:token"
                                 element={user._id ? <Navigate to="/" /> : <ResetPasswordPage />}
                             />
                             <Route path="/products" element={<HomePage />} />

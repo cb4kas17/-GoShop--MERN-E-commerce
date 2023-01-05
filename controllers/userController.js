@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const validator = require('validator');
-
+const sendEmail = require('../utils/sendEmail');
+const crypto = require('crypto');
 const User = require('../models/userModel');
-const createToken = (_id, name, email,role) => {
-    return jwt.sign({ _id, name, email ,role}, process.env.SECRET, { expiresIn: '1d' });
+const Token = require('../models//tokenModel');
+const createToken = (_id, name, email, role) => {
+    return jwt.sign({ _id, name, email, role }, process.env.SECRET, { expiresIn: '1d' });
 };
 const registerUser = async (req, res) => {
     const { name, email, password, role } = req.body;
@@ -160,4 +162,88 @@ const deleteUser = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, loginUser, getUserDetails, updateProfile, getUsers, deleteUser };
+const forgotPassword = async (req, res) => {
+    const { email } = req.body;
+    try {
+        if (!email) {
+            throw Error('Provide email');
+        }
+        if (!validator.isEmail(email)) {
+            throw Error('Email is not valid');
+        }
+        let user = await User.findOne({ email });
+        if (!user) {
+            throw Error('email address does not exists');
+        }
+        let token = await Token.findOne({ userId: user._id });
+        if (!token) {
+            token = await new Token({
+                userId: user._id,
+                token: crypto.randomBytes(32).toString('hex'),
+            }).save();
+        }
+        const url = `http://localhost:3000/password-reset/${user._id}/${token.token}/`;
+        // const url = `${process.env.PORT}password-reset/${user._id}/${token.token}/`;
+        await sendEmail(user.email, 'Password Reset', url);
+        res.status(200).json({ message: 'Password reset link sent to your email account' });
+    } catch (error) {
+        return res.status(400).json({ message: error.message });
+    }
+};
+
+const verifyResetToken = async (req, res) => {
+    const { id, resetToken } = req.params;
+    try {
+        const user = await User.findOne({ _id: id });
+        if (!user) return res.status(400).send({ message: 'Invalid link/token' });
+        const token = await Token.findOne({
+            userId: user._id,
+            token: resetToken,
+        });
+        if (!token) return res.status(400).send({ message: 'Invalid link/token' });
+
+        res.status(200).send('valid reset token');
+    } catch (error) {
+        res.status(500).send({ message: 'There is an error occured' });
+    }
+};
+
+const resetPassword = async (req, res) => {
+    const { id, resetToken } = req.params;
+    const { newPassword } = req.body;
+    try {
+        if (!validator.isStrongPassword(newPassword)) {
+            throw Error('Password not strong enough');
+        }
+        const user = await User.findOne({ _id: id });
+        if (!user) {
+            throw Error('Invalid link/token');
+        }
+        const token = await Token.findOne({
+            userId: user._id,
+            token: resetToken,
+        });
+        if (!token) {
+            throw Error('Invalid link/token');
+        }
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(newPassword, salt);
+        user.password = hashedPassword;
+        await user.save();
+        await token.remove();
+        res.status(200).send({ message: 'Password has been reset successfully' });
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+};
+module.exports = {
+    registerUser,
+    loginUser,
+    getUserDetails,
+    updateProfile,
+    getUsers,
+    deleteUser,
+    forgotPassword,
+    verifyResetToken,
+    resetPassword,
+};

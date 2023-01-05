@@ -10,8 +10,15 @@ const {
     updateProfile,
     getUsers,
     deleteUser,
+    forgotPassword,
+    verifyResetToken,
+    resetPassword,
 } = require('../controllers/userController');
-
+// resetting password
+router.post('/forgot-password', forgotPassword);
+router.get('/verify-resetToken/:id/:resetToken', verifyResetToken);
+router.post('/reset-password/:id/:resetToken', resetPassword);
+//auth
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.get('/:userId', isAuth, getUserDetails);
