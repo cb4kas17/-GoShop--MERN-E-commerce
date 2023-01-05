@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './login.module.css';
 import { loginUser } from '../../store/actions/userActions';
@@ -9,13 +9,13 @@ import Button from '../UI/Button';
 import Modal from '../UI/Modal';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import { userSliceActions } from '../../store/userSlice';
-import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
     let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
     let validEmail = new RegExp(
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     );
-    const navigate = useNavigate();
+
     const dispatch = useDispatch();
     const { status, message } = useSelector((state) => state.user);
 

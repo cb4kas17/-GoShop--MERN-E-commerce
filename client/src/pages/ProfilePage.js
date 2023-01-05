@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserDetails } from '../store/actions/userActions';
+import React from 'react';
+import { useSelector } from 'react-redux';
+
 import ProfilePageContainer from '../components/ProfilePageComponents/ProfilePageContainer';
 const ProfilePage = () => {
-    const dispatch = useDispatch();
     const userInfo = useSelector((state) => state.user.user);
-    const user = JSON.parse(localStorage.getItem('userInfo'));
 
     return (
         <div className="max-width">
